@@ -1,4 +1,4 @@
 // JavaScript Document
 var page3Iframe = ['images/page3/autosec.html','images/page3/wangyi.html','images/page3/accordion.html','images/page3/elastic.html','images/page3/merry-go-round.html','images/page3/apple.html','images/page3/spread.html','images/page3/block.html','images/page3/chromes.html']
-var page4Iframe = ['images/page4/waterfall.html','images/page4/qqimg.html','images/page4/delays.html','images/page4/drag.html','images/page4/jsonRepeat.html','images/page4/clock.html','images/page4/calendar.html','images/page4/baidujsonp.html','images/page4/reg.html','images/page4/scrolling.html','images/page4/tobig.html','images/page4/double_ball.html']
+var page4Iframe = ['images/page4/waterfall.html','images/page4/qq.html','images/page4/delays.html','images/page4/drag.html','images/page4/jsonRepeat.html','images/page4/clock.html','images/page4/calendar.html','images/page4/baidujsonp.html','images/page4/reg.html','images/page4/scrolling.html','images/page4/tobig.html','images/page4/double_ball.html']
 //var page5Iframe = ['images/page5/bird.html','images/page5/puzzle.html']
