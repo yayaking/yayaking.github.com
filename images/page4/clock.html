@@ -1,0 +1,116 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+* { padding: 0; margin: 0; list-style:none;}
+li { list-style: none; }
+body { background:#003; }
+img { border: none; }
+
+.date { width: 520px; height: 520px; margin: 50px auto 0; position: relative; }
+.date h2 { text-align: center; padding: 80px 0 30px; }
+.year { text-align: center; padding-top: 30px; }
+.time { text-align: center; padding: 30px 0; }
+.url { text-align: center; position: absolute; bottom: 40px; left: 160px; }
+.date img { position: relative; }
+.pos2 { margin-left: 10px; }
+.num { width: 25px; }
+.num2 { width: 38px; }
+</style>
+<script>
+window.onload=function(){
+	var oDiv = document.getElementById("clock");
+	var aDiv = oDiv.getElementsByTagName("div");
+	var aImg1 = aDiv[0].getElementsByTagName("img");
+	var aImg2 = aDiv[1].getElementsByTagName("img");
+	updata();
+	setInterval(updata,1000)
+	function updata(){
+		var d = new Date();
+		var str=fillZero(d.getFullYear())+' '+fillZero((d.getMonth()+1))+' '+fillZero(d.getDate())+' ';
+		var str2 =fillZero(d.getHours())+' '+fillZero(d.getMinutes())+' '+fillZero(d.getSeconds())+' '+' '; 
+		for(var i=0;i<aImg1.length;i++){
+			aImg1[i].src='time/'+str.charAt(i)+'.png';
+			if(aImg1[i].alt=="year"){
+				aImg1[i].src="time/year.png";
+			}else if(aImg1[i].alt=="month"){
+				aImg1[i].src="time/month.png";
+			}else if(aImg1[i].alt=="seven"){
+				aImg1[i].src="time/seven.png";
+				}
+			}
+			for(var i=0;i<aImg2.length;i++){
+				aImg2[i].src='time/'+str2.charAt(i)+'.png';
+				if(aImg2[i].alt=="sign"){
+					aImg2[i].src="time/sign.png";
+				}else if(aImg2[i].alt=="week"){
+					aImg2[i].src="time/week.png";
+				}else if(aImg2[i].alt=="one"){
+					switch(d.getDay()){
+						case 0:
+						aImg2[i].src="time/seven.png";
+						break;
+						case 1:
+						aImg2[i].src="time/one.png";
+						break;
+						case 2:
+						aImg2[i].src="time/two.png";
+						break;
+						case 3:
+						aImg2[i].src="time/three.png";
+						break;
+						case 4:
+						aImg2[i].src="time/four.png";
+						break;
+						case 5:
+						aImg2[i].src="time/five.png";
+						break;
+						case 6:
+						aImg2[i].src="time/six.png";
+						break;
+							
+					}
+				}
+				}
+			}
+	function fillZero(n){
+		return n<10?'0'+n:''+n;
+	};	
+};
+</script>
+<style>#BAIDU_DSPUI_FLOWBAR,.adsbygoogle,.ad,div[class^="ad-widsget"],div[id^="div-gpt-ad-"]{display:none !important;}</style></head>
+
+<body>
+
+<div id="clock" class="date">
+    <h2><img src="time/title.png" /></h2>
+    <div class="year">
+        <img class="num" src="time/0.png" alt="0" />
+        <img class="num" src="time/0.png" alt="0" />
+        <img class="num" src="time/0.png" alt="0" />
+        <img class="num" src="time/clock/0.png" alt="0" />
+        <img src="time/year.png" alt="year" />
+        <img class="num" src="time/0.png" alt="0" />
+        <img class="num" src="time/0.png" alt="0" />
+        <img src="time/month.png" alt="month" />
+        <img class="num" src="time/0.png" alt="0" />
+        <img class="num" src="time/0.png" alt="0" />
+        <img src="time/seven.png" alt="seven" />
+    </div>
+    <div class="time">
+        <img class="num" src="time/0.png" alt="0" />
+        <img class="num" src="time/0.png" alt="0" />
+        <img src="time/sign.png" alt="sign" />
+        <img class="num" src="time/0.png" alt="0" />
+        <img class="num" src="time/0.png" alt="0" />
+        <img src="time/sign.png" alt="sign" />
+        <img class="num" src="time/0.png" alt="0" />
+        <img class="num" src="time/0.png" alt="0" />
+        <img class="pos2" src="time/week.png" alt="week" />
+        <img class="num2" src="time/one.png" alt="one" />
+    </div>
+
+</div>
+
+
+</body></html>

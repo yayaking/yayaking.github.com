@@ -1,0 +1,72 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0;list-style:none;}
+div{width:300px;margin:50px auto;}
+ul li{float:left;width:30px;height:30px;border-radius:50%;margin-right:2px;background:red;text-align:center;line-height:30px;color:#fff;}
+ul li.blue{background:blue;}
+input{float:right;}
+</style>
+<script>
+window.onload=function(){
+	var oUl = document.getElementsByTagName('ul')[0];
+	var aLi = oUl.getElementsByTagName('li');
+	var oBlue = aLi[aLi.length-1];
+	var oBtn = document.getElementById('btn');
+	oBtn.onclick=function(){	
+		getNum();
+	}
+	getNum();
+	function getNum(){
+		var arr=[];
+		while(arr.length<6){
+			var num = addZero(rnd(1,34));
+			if(!findInArr(arr,num)){
+				arr.push(num);	
+			}
+		}	
+		
+		for(var i=0;i<aLi.length-1;i++){
+			aLi[i].innerHTML = arr[i];	
+		}
+		
+		var num = addZero(rnd(1,16));
+		oBlue.innerHTML=num;
+	}
+	
+	function findInArr(arr,n){
+		for(var i=0;i<arr.length;i++){
+			if(arr[i]==n){
+				return true;
+			}	
+		}	
+		return false;
+	}
+	function rnd(n,m){
+		return parseInt(n+Math.random()*m);	
+	}
+	function addZero(n){
+		return n<10 ? '0'+n : ''+n; 	
+	}	
+}
+</script>
+<style>#BAIDU_DSPUI_FLOWBAR,.adsbygoogle,.ad,div[class^="ad-widsget"],div[id^="div-gpt-ad-"]{display:none !important;}</style></head>
+
+<body>
+<div>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li class="blue"></li>
+    </ul>
+    <input type="button" value="换一注" id='btn'/>
+</div></body>
+</html>

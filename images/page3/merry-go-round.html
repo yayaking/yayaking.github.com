@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0;list-style:none;}
+#div1{ position:relative;width:800px; height:400px; border:1px solid red; margin:30px auto; overflow:hidden;}
+#div1 ul{ position:absolute;left:0;top:50%; margin-top:-90px;width:20000px; height:180px; }
+#div1 ul li{ position:relative;float:left;width:260px; height:180px; padding:0 10px;}
+#div1 ul li img{width:260px; height:180px;}
+
+</style>
+<script>
+window.onload = function(){
+	var oDiv = document.getElementById("div1");
+	var oUl  = oDiv.children[0];
+	var aLi  = oUl.children;
+	var len  = aLi.length;
+	var aImg = oDiv.getElementsByTagName("img");
+	
+	oUl.onmousedown = function(ev){
+		var oEvent = ev || event;
+		var disX = oEvent.clientX - oUl.offsetLeft;
+		document.onmousemove = function(ev){
+			var oEvent = ev || event;
+			var l = oEvent.clientX - disX;
+			
+			if(l > oDiv.offsetWidth/2 - (0+0.5)*aLi[0].offsetWidth){
+				l  = oDiv.offsetWidth/2 - (0+0.5)*aLi[0].offsetWidth;
+			} else if(l < oDiv.offsetWidth/2 - (aLi.length - 1+0.5)*aLi[0].offsetWidth){
+				l = oDiv.offsetWidth/2 - (aLi.length - 1+0.5)*aLi[0].offsetWidth;
+			}
+			
+			oUl.style.left = l + "px";
+			
+			changeSize();
+		};
+		document.onmouseup = function(){
+			document.onmousemove = null;
+			document.onmouseup = null;
+			oUl.releaseCapture && oUl.releaseCapture();
+		};	
+		oUl.setCapture && oUl.setCapture();
+		return false;
+	};
+	
+	setCenter(2);
+	function setCenter(n){
+	oUl.style.left = oDiv.offsetWidth/2 - (n+0.5)*aLi[0].offsetWidth +　"px";
+		
+	}	
+changeSize();	
+function changeSize(){
+	for(var i = 0; i < aLi.length; i++){
+			var dis = Math.abs(oDiv.offsetWidth/2 - (oUl.offsetLeft +　aLi[i].offsetLeft + aLi[i].offsetWidth/2)); 
+			var scale = 1 - dis/600;			
+						
+			aImg[i].style.width = 520*scale + "px";
+			aImg[i].style.height = 360*scale + "px";
+			aImg[i].style.marginLeft = -(aImg[i].offsetWidth - 260)/2 + "px";
+			aImg[i].style.marginTop = -(aImg[i].offsetHeight - 180)/2 + "px";
+					
+			aLi[i].style.zIndex = parseInt(scale*10000);
+		}	
+	}
+ 
+};
+</script>
+</head>
+
+<body>
+<div id="div1">
+	<ul>
+    	<li><img src="go/1.jpg" /></li>
+    	<li><img src="go/2.jpg" /></li>
+    	<li><img src="go/3.jpg" /></li>
+    	<li><img src="go/4.jpg" /></li>
+    	<li><img src="go/5.jpg" /></li>
+    	<li><img src="go/6.jpg" /></li>
+    	<li><img src="go/7.jpg" /></li>
+    </ul>
+    
+</div>
+</body>
+</html>

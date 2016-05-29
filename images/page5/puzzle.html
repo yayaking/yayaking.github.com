@@ -1,0 +1,191 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+*{padding:0; margin:0; list-style:none;}
+#div1{width:300px;}
+#div1 img{ width:300px;height:300px; margin-bottom:3px;}
+ul{width:600px; height:600px; position:absolute; left:400px; top:0;}
+ul.ul2{display:none;}
+ul li{ float:left; margin:0; height:120px;}
+.tishi{width:36px; font-size:20px; position:absolute;left:310px; top:20px;}
+</style>
+<script src="move2.js"></script>
+<script>
+window.onload=function(){
+	var oDiv = 	document.getElementById('div1');
+	var oUl = document.getElementById('tu1');
+	var aLi = oUl.children;
+	var zIndex = 2;
+	var aPos=[];
+	var aPos1=[];
+	for(var i=0;i<aLi.length;i++){
+		aPos.push({left:aLi[i].offsetLeft,top:aLi[i].offsetTop})
+		aPos1.push({left:aLi[i].offsetLeft,top:aLi[i].offsetTop})
+		aLi[i].style.left = aLi[i].offsetLeft+'px';
+		aLi[i].style.top = aLi[i].offsetTop+'px';	
+	}
+	
+	oDiv.children[0].onclick = function(){
+		for(var i=1;i<=aLi.length;i++){
+			aLi[i-1].children[0].src='game2/'+i+'.jpg'	
+		}
+		aPos.sort(function(){
+			return Math.random() - 0.5	
+		});
+		
+		for(var i = 0; i < aLi.length; i++){
+			aLi[i].index = i;
+			move(aLi[i],aPos[i]);
+		}
+	};
+	oDiv.children[1].onclick = function(){
+		for(var i=1;i<=aLi.length;i++){
+			aLi[i-1].children[0].src='game1/'+i+'.jpg'	
+		}
+		aPos.sort(function(){
+			return Math.random() - 0.5	
+		});
+		
+		for(var i = 0; i < aLi.length; i++){
+			aLi[i].index = i;
+			move(aLi[i],aPos[i]);
+		}
+	};
+	for(var i=0;i<aLi.length;i++){
+		aLi[i].style.position='absolute';	
+		drag(aLi[i]);
+		aLi[i].index = i;
+	}
+	
+function getDis(obj1,obj2){
+	var a = obj1.offsetLeft - obj2.offsetLeft;
+	var b = obj1.offsetTop - obj2.offsetTop;
+	
+	return Math.sqrt(a*a + b*b);
+}
+
+// 1 先碰上  2 算距离 3 比较 4 返回最近li
+function findNear(obj){
+	var iMin = 9999999;
+	var iMinIndex = -1;
+	for(var i = 0; i < aLi.length; i++){
+		if(obj == aLi[i]){
+			continue;
+		}
+		if(collTest(obj,aLi[i])){
+			//算距离
+			var dis = getDis(obj,aLi[i]);
+			//比较
+			if(iMin > dis){
+				iMin = dis;
+				iMinIndex = i;
+			}
+		}
+	}
+	if(iMinIndex == -1){
+		return null;
+	}
+	return aLi[iMinIndex];
+}
+function collTest(obj1,obj2){
+	var l1 = obj1.offsetLeft;
+	var t1 = obj1.offsetTop;
+	var r1 = l1 + obj1.offsetWidth;
+	var b1 = t1 + obj1.offsetHeight;
+	var l2 = obj2.offsetLeft;
+	var t2 = obj2.offsetTop;
+	var r2 = l2 + obj2.offsetWidth;
+	var b2 = t2 + obj2.offsetHeight;
+	if(r1 < l2 || b1 < t2 || l1 > r2 || t1 > b2){//没碰到
+		return false;
+	} else {
+		return true;
+	}
+}
+function drag(obj){
+	obj.onmousedown = function(ev){
+		var oEvent = ev || event;
+		var disX = oEvent.clientX - obj.offsetLeft;
+		var disY = oEvent.clientY - obj.offsetTop;
+		obj.style.zIndex = zIndex++;
+		document.onmousemove = function(ev){
+			var oEvent = ev || event;
+			obj.style.left = oEvent.clientX - disX + "px";
+			obj.style.top  = oEvent.clientY - disY + "px"; 
+			for(var i = 0; i < aLi.length; i++){
+				aLi[i].className = "";
+			}
+			var oNear = findNear(obj);
+		 	if(oNear){
+				oNear.className = "box";
+			}
+		};
+		document.onmouseup = function(){
+			document.onmousemove = null;
+			document.onmouseup = null;
+			obj.releaseCapture && obj.releaseCapture();	
+			var oNear = findNear(obj);
+		 
+		 	if(oNear){
+				 var tmp = obj.index
+				 obj.index = oNear.index;
+				 oNear.index = tmp;
+				 move(oNear,aPos[oNear.index]);
+			}
+			move(obj,aPos[obj.index],{complete:function(){
+				console.log(aPos,aPos1)
+				for(var i=0;i<aPos1.length;i++){
+					if(!aLi[i].offsetLeft==aPos1[i].left||!aLi[i].offsetTop==aPos1[i].top){
+						return;	
+					}	
+				}
+				alert('完成了')	
+			}});
+		};
+		obj.setCapture && obj.setCapture();
+		return false;
+	};
+}	
+}
+</script>
+<style>#BAIDU_DSPUI_FLOWBAR,.adsbygoogle,.ad,div[class^="ad-widsget"],div[id^="div-gpt-ad-"]{display:none !important;}</style></head>
+
+<body>
+<div class="tishi">点击左侧图片开始游戏,拖拽右侧图片改变位置</div>
+<div id="div1">
+	<img src="game2/game2.jpeg">
+    <img src="game2/game1.jpg">
+</div>
+<ul class="ul1" id="tu1">
+	<li><img src="game2/1.jpg"></li>
+	<li><img src="game2/2.jpg"></li>
+	<li><img src="game2/3.jpg"></li>
+	<li><img src="game2/4.jpg"></li>
+	<li><img src="game2/5.jpg"></li>
+	<li><img src="game2/6.jpg"></li>
+	<li><img src="game2/7.jpg"></li>
+	<li><img src="game2/8.jpg"></li>
+	<li><img src="game2/9.jpg"></li>
+	<li><img src="game2/10.jpg"></li>
+	<li><img src="game2/11.jpg"></li>
+	<li><img src="game2/12.jpg"></li>
+	<li><img src="game2/13.jpg"></li>
+	<li><img src="game2/14.jpg"></li>
+	<li><img src="game2/15.jpg"></li>
+	<li><img src="game2/16.jpg"></li>
+	<li><img src="game2/17.jpg"></li>
+	<li><img src="game2/18.jpg"></li>
+	<li><img src="game2/19.jpg"></li>
+	<li><img src="game2/20.jpg"></li>
+	<li><img src="game2/21.jpg"></li>
+	<li><img src="game2/22.jpg"></li>
+	<li><img src="game2/23.jpg"></li>
+	<li><img src="game2/24.jpg"></li>
+	<li><img src="game2/25.jpg"></li>
+</ul>
+
+
+
+
+</body></html>

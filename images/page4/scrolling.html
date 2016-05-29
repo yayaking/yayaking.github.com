@@ -1,0 +1,46 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0;list-style:none;}
+div{width:480px;height:68px;border:1px solid red;margin:50px auto;position:relative;overflow:hidden;}
+ul{position:absolute;left:0;top:0;}
+ul li{float:left;}
+</style>
+<script>
+window.onload=function(){
+	var oDiv = document.getElementsByTagName('div')[0];
+	var oUl = document.getElementsByTagName('ul')[0];
+	oUl.innerHTML+=oUl.innerHTML;
+	oUl.style.width=oUl.children[0].offsetWidth*oUl.children.length+'px';
+	var left=0;
+	var timer=null;
+	timer=setInterval(show,300);	
+	function show(){
+		left-=10;
+		oUl.style.left=left%480+'px';
+	}
+	oDiv.onmouseover=function(){
+		clearInterval(timer)
+	}
+	oDiv.onmouseout=function(){
+		timer=setInterval(show,300);
+	}
+};
+</script>
+<style>#BAIDU_DSPUI_FLOWBAR,.adsbygoogle,.ad,div[class^="ad-widsget"],div[id^="div-gpt-ad-"]{display:none !important;}</style></head>
+
+<body>
+<div>
+    <ul>
+        <li><img src="scroll/gtu1.jpg"></li>
+        <li><img src="scroll/gtu2.jpg"></li>
+        <li><img src="scroll/gtu3.jpg"></li>
+        <li><img src="scroll/gtu4.jpg"></li>
+    </ul>
+</div>
+</body>
+</html>

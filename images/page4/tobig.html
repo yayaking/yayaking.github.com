@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0;}
+#div1{width:270px;height:400px;position:relative;}
+#div2{width:270px;height:400px;position:absolute;left:280px;top:0;overflow:hidden;display:none;}
+#mask{position:absolute;left:0;top:0;background:#FFC;width:100px;height:100px;opacity:0.7;display:none;}
+#div2 img{ position:absolute;left:0;top:0;width:580px; height:840px; background:red;}
+</style>
+<script>
+window.onload=function(){
+	var oDiv1=document.getElementById("div1");
+	var oDiv2=document.getElementById("div2");
+	var oImg=document.getElementById("img1");
+	var oSpan=document.getElementById("mask");
+	
+	oDiv1.onmousemove=function(ev){
+		var oEvent=ev||event;
+		
+		var l=oEvent.clientX-oSpan.offsetWidth/2;
+		var t=oEvent.clientY-oSpan.offsetHeight/2;
+		
+		if(l<0){
+			l=0;
+		}else if(l>oDiv1.offsetWidth-oSpan.offsetWidth){
+			l=oDiv1.offsetWidth-oSpan.offsetWidth;
+		}
+		
+		if(t<0){
+			t=0;
+		}else if(t>oDiv1.offsetHeight-oSpan.offsetHeight){
+			t=oDiv1.offsetHeight-oSpan.offsetHeight;
+		}
+
+		var scaleX=l/(oDiv1.offsetWidth-oSpan.offsetWidth);
+		var scaleY=t/(oDiv1.offsetHeight-oSpan.offsetHeight);
+		
+		oImg.style.left=-scaleX*(oImg.offsetWidth-oDiv2.offsetWidth)+"px"
+		oImg.style.top=-scaleY*(oImg.offsetHeight-oDiv2.offsetHeight)+"px"
+		
+		oSpan.style.left=l+"px";
+		oSpan.style.top=t+"px";
+		
+	}
+	
+	oDiv1.onmouseover=function(){
+		oSpan.style.display="block";
+		oDiv2.style.display="block";
+	}
+	oDiv1.onmouseout=function(){
+		oSpan.style.display="none";
+		oDiv2.style.display="none";
+	}
+	
+}
+</script>
+</head>
+
+<body>
+<div id="div1">
+   <img src="big/2.png"/>
+   <div id="div2"><img id="img1" src="big/1.jpeg"/></div>
+   <span id="mask"></span>
+</div>
+
+</body>
+</html>

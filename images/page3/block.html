@@ -1,0 +1,124 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+*{padding:0;margin:0;list-style:none;}
+input{margin-left:200px;}
+.btn{width:50px; }
+.btn input{margin-bottom:5px; }
+#div1{width:680px;height:344px;margin:0 auto;background:url(focus/focus2.jpg) no-repeat;position:relative;}
+#div1 span{position:absolute;background:url(focus/focus1.jpg) no-repeat;}
+</style>
+<script src="move2.js"></script>
+<script>
+window.onload=function(){
+	var oBtn1 = document.getElementById('btn1');
+	var oBtn2 = document.getElementById('btn2');
+	var oBtn3 = document.getElementById('btn3');
+	var oBtn4 = document.getElementById('btn4');
+	var oDiv = document.getElementById('div1');
+	var iNow = 0;
+	var ready = true
+	var col = 5;
+	var row = 10;
+	for(var c=0;c<col;c++){
+		for(var r=0;r<row;r++){
+			var oSpan = document.createElement('span');
+			oSpan.c=c;
+			oSpan.r=r;
+			oSpan.style.width = oDiv.offsetWidth/row+'px';
+			oSpan.style.height = oDiv.offsetHeight/col+'px';
+			oDiv.appendChild(oSpan);
+			oSpan.style.left = oSpan.offsetWidth*r+'px';
+			oSpan.style.top = oSpan.offsetHeight*c+'px';
+			oSpan.style.backgroundPosition = -oSpan.offsetWidth*r+'px '+ -oSpan.offsetHeight*c+'px';
+		}
+	}
+	var aSpan = oDiv.getElementsByTagName('span');
+	oBtn1.onclick=function(){
+		if(!ready){
+			return;	
+		}
+		ready = false;
+		iNow++;
+		var i=0;
+		var timer = setInterval(function(){
+			(function(index){
+				move(aSpan[i],{opacity:0},{complete:function(){
+					if(index== aSpan.length-1){
+						ready=true;
+						for(var i=0;i<aSpan.length;i++){
+							aSpan[i].style.opacity=1;
+							aSpan[i].style.filter='alpha(opacity:100)'
+							aSpan[i].style.backgroundImage='url(focus/focus'+(iNow%4+1)+'.jpg)';	
+						}	
+						oDiv.style.backgroundImage='url(focus/focus'+((iNow%4+1)%4+1)+'.jpg)'
+					}	
+				}})	
+			})(i)
+			i++;
+			if(i==aSpan.length){
+				clearInterval(timer);
+			}
+		},40)
+	}//btn1 end	
+	oBtn2.onclick=function(){
+		if(!ready) return;
+		ready=false;
+		iNow++;		
+		for(var i=0;i<aSpan.length;i++){
+			(function(index){
+				setTimeout(function(){
+					move(aSpan[index],{opacity:0},{complete:function(){
+						//行+列-2	==	最后一个span里面的r+c
+						if(aSpan[index].r+aSpan[index].c==col+row-2){
+							ready=true;
+							//alert('完事了');
+							//准备数据
+							for(var i=0;i<aSpan.length;i++){
+								aSpan[i].style.backgroundImage='url(focus/focus'+(iNow%4+1)+'.jpg)';
+								aSpan[i].style.opacity=1;	
+							}
+							oDiv.style.backgroundImage='url(focus/focus'+((iNow%4+1)%4+1)+'.jpg)';
+						}
+					}});	
+				},(aSpan[index].r+aSpan[index].c)*100);
+			})(i);
+		}
+	};//btn2 end	
+	oBtn3.onclick=function(){
+		if(!ready) return;
+		ready=false;
+		iNow++;		
+		for(var i=0;i<aSpan.length;i++){
+			(function(index){
+				setTimeout(function(){
+					move(aSpan[index],{time:800,opacity:0});	
+				},Math.random()*500);
+			})(i);
+		}
+		
+		setTimeout(function(){
+			ready=true;
+			//准备数据
+			for(var i=0;i<aSpan.length;i++){
+				aSpan[i].style.backgroundImage='url(focus/focus'+(iNow%4+1)+'.jpg)';
+				aSpan[i].style.opacity=1;	
+			}
+			oDiv.style.backgroundImage='url(focus/focus'+((iNow%4+1)%4+1)+'.jpg)';	
+		},1300);
+	};
+};
+</script>
+<style>#BAIDU_DSPUI_FLOWBAR,.adsbygoogle,.ad,div[class^="ad-widsget"],div[id^="div-gpt-ad-"]{display:none !important;}</style></head>
+
+<body>
+<div class="btn">
+	<input type="button" value="效果1" id="btn1">
+	<input type="button" value="效果2" id="btn2">
+	<input type="button" value="效果3" id="btn3">
+</div>
+<div id="div1"><span style="width: 68px; height: 68.8px; left: 0px; top: 0px; background-position: 0px 0px;"></span><span style="width: 68px; height: 68.8px; left: 68px; top: 0px; background-position: -68px 0px;"></span><span style="width: 68px; height: 68.8px; left: 136px; top: 0px; background-position: -136px 0px;"></span><span style="width: 68px; height: 68.8px; left: 204px; top: 0px; background-position: -204px 0px;"></span><span style="width: 68px; height: 68.8px; left: 272px; top: 0px; background-position: -272px 0px;"></span><span style="width: 68px; height: 68.8px; left: 340px; top: 0px; background-position: -340px 0px;"></span><span style="width: 68px; height: 68.8px; left: 408px; top: 0px; background-position: -408px 0px;"></span><span style="width: 68px; height: 68.8px; left: 476px; top: 0px; background-position: -476px 0px;"></span><span style="width: 68px; height: 68.8px; left: 544px; top: 0px; background-position: -544px 0px;"></span><span style="width: 68px; height: 68.8px; left: 612px; top: 0px; background-position: -612px 0px;"></span><span style="width: 68px; height: 68.8px; left: 0px; top: 69px; background-position: 0px -69px;"></span><span style="width: 68px; height: 68.8px; left: 68px; top: 69px; background-position: -68px -69px;"></span><span style="width: 68px; height: 68.8px; left: 136px; top: 69px; background-position: -136px -69px;"></span><span style="width: 68px; height: 68.8px; left: 204px; top: 69px; background-position: -204px -69px;"></span><span style="width: 68px; height: 68.8px; left: 272px; top: 69px; background-position: -272px -69px;"></span><span style="width: 68px; height: 68.8px; left: 340px; top: 69px; background-position: -340px -69px;"></span><span style="width: 68px; height: 68.8px; left: 408px; top: 69px; background-position: -408px -69px;"></span><span style="width: 68px; height: 68.8px; left: 476px; top: 69px; background-position: -476px -69px;"></span><span style="width: 68px; height: 68.8px; left: 544px; top: 69px; background-position: -544px -69px;"></span><span style="width: 68px; height: 68.8px; left: 612px; top: 69px; background-position: -612px -69px;"></span><span style="width: 68px; height: 68.8px; left: 0px; top: 138px; background-position: 0px -138px;"></span><span style="width: 68px; height: 68.8px; left: 68px; top: 138px; background-position: -68px -138px;"></span><span style="width: 68px; height: 68.8px; left: 136px; top: 138px; background-position: -136px -138px;"></span><span style="width: 68px; height: 68.8px; left: 204px; top: 138px; background-position: -204px -138px;"></span><span style="width: 68px; height: 68.8px; left: 272px; top: 138px; background-position: -272px -138px;"></span><span style="width: 68px; height: 68.8px; left: 340px; top: 138px; background-position: -340px -138px;"></span><span style="width: 68px; height: 68.8px; left: 408px; top: 138px; background-position: -408px -138px;"></span><span style="width: 68px; height: 68.8px; left: 476px; top: 138px; background-position: -476px -138px;"></span><span style="width: 68px; height: 68.8px; left: 544px; top: 138px; background-position: -544px -138px;"></span><span style="width: 68px; height: 68.8px; left: 612px; top: 138px; background-position: -612px -138px;"></span><span style="width: 68px; height: 68.8px; left: 0px; top: 207px; background-position: 0px -207px;"></span><span style="width: 68px; height: 68.8px; left: 68px; top: 207px; background-position: -68px -207px;"></span><span style="width: 68px; height: 68.8px; left: 136px; top: 207px; background-position: -136px -207px;"></span><span style="width: 68px; height: 68.8px; left: 204px; top: 207px; background-position: -204px -207px;"></span><span style="width: 68px; height: 68.8px; left: 272px; top: 207px; background-position: -272px -207px;"></span><span style="width: 68px; height: 68.8px; left: 340px; top: 207px; background-position: -340px -207px;"></span><span style="width: 68px; height: 68.8px; left: 408px; top: 207px; background-position: -408px -207px;"></span><span style="width: 68px; height: 68.8px; left: 476px; top: 207px; background-position: -476px -207px;"></span><span style="width: 68px; height: 68.8px; left: 544px; top: 207px; background-position: -544px -207px;"></span><span style="width: 68px; height: 68.8px; left: 612px; top: 207px; background-position: -612px -207px;"></span><span style="width: 68px; height: 68.8px; left: 0px; top: 276px; background-position: 0px -276px;"></span><span style="width: 68px; height: 68.8px; left: 68px; top: 276px; background-position: -68px -276px;"></span><span style="width: 68px; height: 68.8px; left: 136px; top: 276px; background-position: -136px -276px;"></span><span style="width: 68px; height: 68.8px; left: 204px; top: 276px; background-position: -204px -276px;"></span><span style="width: 68px; height: 68.8px; left: 272px; top: 276px; background-position: -272px -276px;"></span><span style="width: 68px; height: 68.8px; left: 340px; top: 276px; background-position: -340px -276px;"></span><span style="width: 68px; height: 68.8px; left: 408px; top: 276px; background-position: -408px -276px;"></span><span style="width: 68px; height: 68.8px; left: 476px; top: 276px; background-position: -476px -276px;"></span><span style="width: 68px; height: 68.8px; left: 544px; top: 276px; background-position: -544px -276px;"></span><span style="width: 68px; height: 68.8px; left: 612px; top: 276px; background-position: -612px -276px;"></span></div>
+
+
+</body></html>

@@ -1,0 +1,77 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+input{ border:1px solid #ccc;}
+.ok { border-color:green;}
+.error { border-color:red;}
+</style>
+<script>
+window.onload = function(){
+	var json = {
+	username : /^[a-z][\w\-$]{5,31}$/i,
+	pass : /^.{6,32}$/,
+	email : /^\w+@[a-z0-9\-]+(\.[a-z]{2,6}){1,2}$/i,
+	age : /^(1[6-9]|[2-9]\d|100)$/,
+	tel : /^(0[1-9]\d{1,2}-)?[1-9]\d{6,7}$/
+};
+function checkForm(id){
+	var oForm = document.getElementById(id);
+	var aInput = oForm.children;
+	for(var i = 0; i < aInput.length; i++){
+		var re = json[aInput[i].name];
+		if(re){
+			(function(re){
+				aInput[i].onblur = function(){
+					checkText(this,re);
+				};
+			})(re);
+		}	
+	}
+	
+	function checkText(obj,re){
+		if(re.test(obj.value)){
+			obj.className = "ok";
+			return true;
+		} else {
+			obj.className = "error";
+			return false;
+		}	
+	}
+	oForm.onsubmit = function(){
+		var bOk = true;
+		for(var i = 0; i < aInput.length; i++){
+			var re = json[aInput[i].name];
+			
+			if(re){
+				if(checkText(aInput[i],re) == false){
+					bOk = false;
+				}
+			}
+		}
+		
+		if(bOk == false){
+			return false;
+		}
+	};
+}
+	checkForm("form1");	
+};
+
+</script>
+<style>#BAIDU_DSPUI_FLOWBAR,.adsbygoogle,.ad,div[class^="ad-widsget"],div[id^="div-gpt-ad-"]{display:none !important;}</style></head>
+
+<body>
+<form id="form1" action="http://www.zhinengshe.com/">
+    用户名：<input type="text" name="username" value="" />首字母位字母，包含英文数字下划线-$，6-32位<br /><br />
+    密码：<input type="text" name="pass" value="" />任意字符6到32位<br /><br />
+    号码：<input type="text" name="tel" value="" />固定电话，例如：010-1234567<br /><br />
+    邮箱：<input type="text" name="email" value="" />邮箱格式<br /><br />
+    年龄：<input type="text" name="age" value="" />16-100<br /><br />
+	<input type="submit"  />
+</form>
+</body>
+</html>

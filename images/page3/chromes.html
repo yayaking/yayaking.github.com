@@ -1,0 +1,132 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+*{ margin:0; padding:0; list-style:none;}
+#chrome{width:1000px;height:400px; margin:90px auto; position:relative;}
+#chrome li{width:128px;height:128px; float:left;margin:20px; border:10px solid black; background:#fff;}
+</style>
+<script src="move2.js"></script>
+<script>
+window.onload=function(){
+	var oChrome = document.getElementById('chrome');
+	var aLi = oChrome.children;
+	var zIndex = 2;
+	var aPos=[];
+	for(var i=0;i<aLi.length;i++){
+		aPos.push({left:aLi[i].offsetLeft,top:aLi[i].offsetTop});
+		aLi[i].style.left=aPos[i].left+'px';
+		aLi[i].style.top=aPos[i].top+'px';
+	}
+	for(var i=0;i<aLi.length;i++){
+		aLi[i].style.position='absolute';
+		aLi[i].style.margin=0;
+		aLi[i].index=i;	
+	}
+	for(var i=0;i<aLi.length;i++){
+		drag(aLi[i]);
+	}
+	
+	function drag(obj){
+		obj.onmousedown=function(ev){
+			clearInterval(obj.timer);
+			var oEvt = ev||event;
+			var disX = oEvt.clientX-obj.offsetLeft;
+			var disY = oEvt.clientY-obj.offsetTop;
+			obj.style.zIndex=zIndex++;
+			document.onmousemove=function(ev){
+				var oEvt = ev||event;
+				obj.style.left = oEvt.clientX-disX+'px';
+				obj.style.top=oEvt.clientY-disY+'px';
+				
+				var nearobj = findNearest(obj);
+				if(nearobj &&nearobj!=obj){
+					var n = obj.index;
+					var m = nearobj.index;
+					if(n<m){
+						for(var i=0;i<aLi.length;i++){
+							if(aLi[i].index>n&&aLi[i].index<=m){
+								aLi[i].index--;
+								move(aLi[i],aPos[aLi[i].index]);	
+							}	
+						}	
+					}else{
+						for(var i=0;i<aLi.length;i++){
+							if(aLi[i].index>=m&&aLi[i].index<n){
+								aLi[i].index++;
+								move(aLi[i],aPos[aLi[i].index]);	
+							}	
+						}
+					}
+					obj.index=m;	
+				}
+			}
+			document.onmouseup=function(){
+				move(obj,aPos[obj.index])
+				document.onmousemove=document.onmouseup=null;
+				obj.releaseCapture&&obj.releaseCapture();
+			}
+			obj.setCapture&&obj.setCapture();
+			return false;
+		}
+	}
+	function findNearest(obj){
+		var minNum = 999999999999999;
+		var minNumIndex=-1;
+		for(var i=0;i<aLi.length;i++){
+			if(obj==aLi[i]){
+				continue
+			}
+			if(collTest(obj,aLi[i])){
+				var dis = getDis(obj,aLi[i]);
+				if(dis<minNum){
+					minNum = dis;
+					minNumIndex=i;	
+				}	
+			}	
+		}
+		if(minNumIndex==-1){
+			return null;
+		}else{
+			return aLi[minNumIndex];	
+		}	
+	}
+	function getDis(obj1,obj2){
+		var a = obj1.offsetLeft-aPos[obj2.index].left;
+		var b = obj1.offsetTop-aPos[obj2.index].top;
+		return Math.sqrt(a*a+b*b);	
+	}
+	
+	function collTest(obj1,obj2){
+		var l1 = obj1.offsetLeft;
+		var t1 = obj1.offsetTop;
+		var r1 = obj1.offsetLeft+obj1.offsetWidth;
+		var b1 = obj1.offsetTop+obj1.offsetHeight;	
+		var l2 = aPos[obj2.index].left;
+		var t2 = aPos[obj2.index].top;
+		var r2 = aPos[obj2.index].left+obj2.offsetWidth;
+		var b2 = aPos[obj2.index].top+obj2.offsetHeight;
+		if(l1>r2||t1>b2||r1<l2||b1<t2){
+			return false;	
+		}else{
+			return true;	
+		}	
+	}
+
+};
+</script>
+<style>#BAIDU_DSPUI_FLOWBAR,.adsbygoogle,.ad,div[class^="ad-widsget"],div[id^="div-gpt-ad-"]{display:none !important;}</style></head>
+<body>
+<ul id="chrome">
+	<li style="left: 20px; top: 20px; position: absolute; margin: 0px;"><img src="chrome/1.png"></li>    
+	<li style="left: 208px; top: 20px; position: absolute; margin: 0px;"><img src="chrome/2.png"></li>    
+	<li style="left: 396px; top: 20px; position: absolute; margin: 0px;"><img src="chrome/3.png"></li>    
+	<li style="left: 584px; top: 20px; position: absolute; margin: 0px;"><img src="chrome/4.png"></li>    
+	<li style="left: 772px; top: 20px; position: absolute; margin: 0px;"><img src="chrome/5.png"></li>    
+	<li style="left: 20px; top: 208px; position: absolute; margin: 0px;"><img src="chrome/6.png"></li>    
+	<li style="left: 208px; top: 208px; position: absolute; margin: 0px;"><img src="chrome/7.png"></li>    
+	<li style="left: 396px; top: 208px; position: absolute; margin: 0px;"><img src="chrome/8.png"></li>    
+	<li style="left: 584px; top: 208px; position: absolute; margin: 0px;"><img src="chrome/9.png"></li>    
+</ul>
+
+</body></html>

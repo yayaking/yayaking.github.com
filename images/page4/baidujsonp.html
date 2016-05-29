@@ -1,0 +1,47 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0;list-style:none;}
+#box{width:540px;height:40px;margin:30px auto; position:relative;}
+input{width:540px;height:40px; font-size:24px;}
+#box ul{width:540px;position:absolute;left:0;top:40px;}
+#box ul li{padding:10px;height:20px;line-height:20px;}
+</style>
+<script src="jsonp.js"></script>
+<script>
+window.onload=function(){
+	var oTxt = document.getElementById('txt1');
+	var oUl = document.getElementById('content');
+	var url ="https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su"
+	oTxt.onkeyup=function(){
+		jsonp({
+			url:url,
+			data:{
+				wd:oTxt.value,	
+			},
+			success:function(json){
+				var arr = json.s;
+				oUl.innerHTML='';
+				for(var i=0;i<arr.length;i++){
+					var oLi = document.createElement('li');
+					oLi.innerHTML=arr[i];
+					oUl.appendChild(oLi);	
+				}
+			}	
+		})
+	};
+};
+</script>
+<style>#BAIDU_DSPUI_FLOWBAR,.adsbygoogle,.ad,div[class^="ad-widsget"],div[id^="div-gpt-ad-"]{display:none !important;}</style></head>
+
+<body>
+<div id="box">
+	<input type="text" id="txt1"/>
+	<ul id="content"></ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+*{ margin:0; padding:0; list-style:none; font-family: "微软雅黑","张海山锐线体简"}
+img{width:310px;height:310px;}
+</style>
+<script>
+function getPos(obj){
+	var l=0;
+	var t=0;
+	while(obj){
+		l+=obj.offsetLeft;
+		t+=obj.offsetTop;
+		obj=obj.offsetParent;	
+	}
+	return {left:l, top:t}
+}
+window.onload=window.onscroll=window.onresize=function(){
+	var aImg=document.getElementsByTagName('img');
+	for(var i=0;i<aImg.length;i++){
+		var scrTop=document.documentElement.scrollTop||document.body.scrollTop;
+		var winView=document.documentElement.clientHeight+scrTop;
+		var imgPos = getPos(aImg[i]).top;
+		if(imgPos<winView-30){	
+			aImg[i].src=aImg[i].getAttribute('_src');	
+		}
+		
+	}
+};
+</script>
+<style>#BAIDU_DSPUI_FLOWBAR,.adsbygoogle,.ad,div[class^="ad-widsget"],div[id^="div-gpt-ad-"]{display:none !important;}</style></head>
+
+<body>
+<img _src="delay/m1.jpg" src="delay/m1.jpg">
+<img _src="delay/m2.jpg" src="delay/m2.jpg">
+<img _src="delay/m3.jpg" src="delay/m3.jpg">
+<img _src="delay/m4.jpg" src="delay/m4.jpg">
+<img _src="delay/m5.jpg" src="delay/m5.jpg">
+<img _src="delay/m6.jpg" src="delay/m6.jpg">
+<img _src="delay/m7.jpg">
+<img _src="delay/m8.jpg">
+<img _src="delay/m9.jpg">
+<img _src="delay/m10.jpg">
+<img _src="delay/m11.jpg">
+<img _src="delay/m12.jpg">
+<img _src="delay/m13.jpg">
+<img _src="delay/m14.jpg">
+<img _src="delay/m15.jpg">
+<img _src="delay/m16.jpg">
+<img _src="delay/m17.jpg">
+<img _src="delay/m18.jpg">
+<img _src="delay/m19.jpg">
+<img _src="delay/m20.jpg">
+
+
+
+</body></html>

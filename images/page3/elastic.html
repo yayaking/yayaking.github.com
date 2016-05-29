@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+#img1{width:200px;height:200px;position:absolute;bottom:0;left:50%;}
+</style>
+<script>
+window.onload=function(){
+	var oImg=document.getElementById("img1");
+	var speedX=0;
+	var speedY=0;
+	var lastX=0;
+	var lastY=0;
+	var timer=null;
+	oImg.onmousedown=function(ev){
+		clearInterval(timer)
+		var oEvent=ev||event;
+		var disX=oEvent.clientX-oImg.offsetLeft;
+		var disY=oEvent.clientY-oImg.offsetTop;
+		
+		document.onmousemove=function(ev){
+			var oEvent=ev||event;
+			oImg.style.left=oEvent.clientX-disX+"px";
+			oImg.style.top=oEvent.clientY-disY+"px";
+			
+			speedX=oImg.offsetLeft-lastX;
+			speedY=oImg.offsetTop-lastY;
+			lastX=oImg.offsetLeft;
+			lastY=oImg.offsetTop
+		};
+		document.onmouseup=function(){
+			document.onmouseup=document.onmousemove=null;
+			oImg.releaseCapture&&oImg.releaseCapture();
+			move();
+		};
+		oImg.setCapture&&oImg.setCapture();
+		return false
+	};
+	
+	function move(){
+		clearInterval(timer);
+		timer=setInterval(function(){
+			speedY+=3;
+			var l=oImg.offsetLeft+speedX;
+			var t=oImg.offsetTop+speedY;
+			
+			if(l>=document.documentElement.clientWidth-oImg.offsetWidth){
+				l=document.documentElement.clientWidth-oImg.offsetWidth;
+				speedX*=-0.8;
+				speedY*=0.8;
+			}else if(l<=0){
+				l=0;
+				speedX*=-0.8;
+				speedY*=0.8
+			}
+			if(t>=document.documentElement.clientHeight-oImg.offsetHeight){
+				t=document.documentElement.clientHeight-oImg.offsetHeight;
+				speedY*=-0.8;
+				speedX*=0.8;
+			}else if(t<=0){
+				t=0;
+				speedY*=-0.8;
+				speedX*=0.8
+			}
+			if(Math.abs(speedX)<1){
+				speedX=0;
+			}
+			if(Math.abs(speedY)<1){
+				speedY=0;
+			}
+			
+			if(speedX==0&&speedY==0&&t==document.documentElement.clientHeight-oImg.offsetHeight){
+				clearInterval(timer)
+			}
+			
+			oImg.style.left=l+"px";
+			oImg.style.top=t+"px";
+			
+		},30);
+	}
+}
+</script>
+</head>
+
+<body>
+<img id="img1" src="ball/ball.jpg"/>
+</body>
+</html>

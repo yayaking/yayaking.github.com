@@ -1,0 +1,75 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+*{padding:0;margin:0;list-style:none;}
+#box{width:680px;height:344px;position:relative;overflow:hidden;margin:30px auto;}
+#box ul{position:absolute;left:0;top:0;height:344px;}
+#box ul li{float:left;}
+#box ol{width:400px;height:20px;position:absolute;left:50%;bottom:30px;margin-left:-200px;}
+#box ol li{width:90px;height:20px;background:#fff;float:left;margin-left:10px;}
+#box ol li span{display:block;background:red;height:100%;width:0;}
+</style>
+<script src="move2.js"></script>
+<script>
+window.onload=function(){
+	var oBox = document.getElementById('box');	
+	var oUl = oBox.children[0];
+	var oOl = oBox.children[1];
+	var aSpan =	oOl.getElementsByTagName('span');
+	oUl.style.width = oUl.children.length*oUl.children[0].offsetWidth+'px';
+	var iNow=0;
+	var pause=false;
+	next();
+	function next(){
+		for(var i=0;i<aSpan.length;i++){
+			aSpan[i].style.width=0;	
+		}	
+		move(aSpan[iNow],{'width':90},{complete:function(){
+			iNow++;
+			iNow%=aSpan.length;	
+			move(oUl,{left:-iNow*oUl.children[0].offsetWidth},{complete:function(){
+				if(pause){
+					return;	
+				}
+				next();	
+			}})
+		}})
+	}
+	oBox.onmouseover=function(){
+		pause=true;
+		for(var i=0;i<aSpan.length;i++){
+			aSpan[i].style.width=0;
+		}
+		clearInterval(aSpan[iNow].timer);	
+	}
+	oBox.onmouseout=function(){
+		pause=false;
+		for(var i=0;i<aSpan.length;i++){
+			aSpan[i].style.width=0;
+		}
+		next();
+	}
+
+};
+</script>
+<style>#BAIDU_DSPUI_FLOWBAR,.adsbygoogle,.ad,div[class^="ad-widsget"],div[id^="div-gpt-ad-"]{display:none !important;}</style></head>
+
+<body>
+<div id="box">
+	<ul style="width: 2720px; left: -680px;">
+    	<li><img src="focus/focus1.jpg"></li>
+    	<li><img src="focus/focus2.jpg"></li>
+    	<li><img src="focus/focus3.jpg"></li>
+    	<li><img src="focus/focus4.jpg"></li>
+   	</ul>
+    <ol>
+    	<li><span style="width: 0px;"></span></li>
+    	<li><span style="width: 50.8696px;"></span></li>
+    	<li><span style="width: 0px;"></span></li>
+    	<li><span style="width: 0px;"></span></li>
+    </ol>
+</div>
+
+
+</body></html>

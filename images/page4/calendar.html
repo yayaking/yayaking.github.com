@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0;list-style:none;}
+a{text-decoration:none;}
+.rili{width:285px; border:1px solid #ccc;overflow:hidden;position:relative;cursor:pointer;margin:22px auto;background:#fff;}
+.rili span{display:inline-block;margin-left:100px;lene-height:25px;}
+.rili a.left{display:block;width:30px;height:30px;position:absolute;left:0;top:0;}
+.rili a.right{display:block;width:30px;height:30px;position:absolute;right:0;top:0;}
+.rili ol li{float:left;width:40px;text-align:center}
+.rili ol{float:left;}
+.rili ol li.week{color:#ff4a00;} 
+.rili ul{float:left;}
+.rili ul li{font-size:12px;font-weight:bold;float:left;width:38px;height:28px;margin:1px;line-height:30px;text-align:center;text-align:center;background:#ccc;}
+.rili li.tod{background:green}
+.rili li.past{color:#fff;}
+.rili li.past:hover{background:#ccc;}
+.rili li.fu{background:#ccc;}
+.rili ul li:hover{background:#0FF;color:#fff;}
+</style>
+<script>
+window.onload=function(){
+	/*var oTxt = document.getElementById('inp');
+	oTxt.onclick=*/
+	myCalentar();	
+};
+	function myCalentar(ev){
+		var oEvt = ev||event;
+		var _this=this;
+		var oldrili = document.getElementsByClassName('rili')[0];
+		oldrili&&document.body.removeChild(oldrili);
+		var oDiv = document.createElement('div');
+		oDiv.className='rili';
+		document.body.appendChild(oDiv);
+		var now = 0;
+		oDiv.innerHTML='<a class="left" href="javascript:;"><<</a>\
+		<span class="data">2015年8月</span>\
+		<a class="right" href="javascript:;">>></a>\
+		<ol>\
+			<li>一</li>\
+			<li>二</li>\
+			<li>三</li>\
+			<li>四</li>\
+			<li>五</li>\
+			<li class="week">六</li>\
+			<li class="week">日</li>\
+		</ol>\
+		<ul></ul>';	
+		fillTime();
+		oDiv.children[0].onclick=function(){
+			now--;	
+			fillTime();
+		};
+		oDiv.children[2].onclick=function(){
+			now++
+			fillTime();	
+		};
+		//var oldrili = document.getElementsByClassName('rili')[0];
+		oDiv.onclick=function(ev){(ev||event).cancelBubble=true;}
+		function fillTime(){
+			oDiv.children[4].innerHTML='';
+			
+			var d = new Date();
+			d.setMonth(d.getMonth()+now,1);
+			var week = d.getDay();
+			if(week==0){week=7}
+			for(var i=1;i<week;i++){
+				var oLi = document.createElement('li');
+				oLi.className = 'past'
+				oDiv.children[4].appendChild(oLi);	
+			}
+			var d = new Date();
+			d.setMonth(d.getMonth()+now+1,0);
+			var lastDate = d.getDate();
+			for(var i=1;i<=lastDate;i++){
+				var oLi = document.createElement('li');
+/*				oLi.onclick=function(){
+					var d = new Date();
+					d.setMonth(d.getMonth()+now);
+					var year = d.getFullYear();
+					var month = d.getMonth()+1;
+					if(this.innerHTML=='今天'){
+						var day = d.getDate();
+					}else{
+						var day = this.innerHTML;	
+					}
+					
+					if(this.className=='past'){return;}
+					_this.value=year +'-'+month+'-'+day;	
+					var oldrili = document.getElementsByClassName('rili')[0];
+					document.body.removeChild(oldrili);
+				};
+*/				oLi.innerHTML=i;
+				oDiv.children[4].appendChild(oLi);	
+			}
+			//月变活
+			var d = new Date();
+			d.setMonth(d.getMonth()+now);
+			var month = d.getMonth()+1;
+			var year = d.getFullYear();
+			oDiv.children[1].innerHTML = year+"年"+month+"月";
+			
+			var day = d.getDate();
+			if(now==0){
+				for(var i=0;i<oDiv.children[4].children.length;i++){
+				//alert(oDiv.children[4].children[i]);
+				if(oDiv.children[4].children[i].innerHTML==day){
+					oDiv.children[4].children[i].className = 'tod';
+					}else if(oDiv.children[4].children[i].innerHTML<day){
+						oDiv.children[4].children[i].className='past'
+						}
+			}
+			}else if(now<0){
+				for(var i=0;i<oDiv.children[4].children.length;i++){
+						oDiv.children[4].children[i].className='past'
+				}
+			}
+		};
+		document.onclick=function(){
+			var oldrili = document.getElementsByClassName('rili')[0];
+			oldrili&&document.body.removeChild(oldrili);
+		}
+		oEvt.cancelBubble=true;
+	}
+
+</script>
+<style>#BAIDU_DSPUI_FLOWBAR,.adsbygoogle,.ad,div[class^="ad-widsget"],div[id^="div-gpt-ad-"]{display:none !important;}</style></head>
+
+<body>
+<!--<input style="width:280px;height:20px;margin:0 auto;position:absolute;left:540px;top:0;" type="text" value='' id="inp">-->
+<!--<div class="rili">
+	<a class='left' href="javascript:;"><<</a>
+    <span class="data">2015年8月</span>
+    <a class='right' href="javascript:;">>></a>
+	<ol>
+    	<li>一</li>
+        <li>二</li>
+        <li>三</li>
+        <li>四</li>
+        <li>五</li>
+        <li>六</li>
+        <li>日</li>
+    </ol>
+    <ul>
+    	<li class="past">1</li>
+        <li class="past">2</li>
+        <li class="tod">今天</li>
+        <li class="fu">4</li>
+  		<li class="fu">5</li>
+    </ul>
+</div>-->
+</body>
+</html>

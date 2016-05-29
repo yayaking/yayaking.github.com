@@ -2,10 +2,814 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>无标题文档</title>
+<title>个人网站-张鹏</title>
+<style>
+*{padding:0;margin:0;list-style:none;}
+html,body,.box,.page{width:100%;height:100%; font-family:'宋体'}
+body{}
+.box{ position:relative; overflow:hidden;}
+.page{position:absolute;left:0;top:0;}
+.page1,.page2,.page3,.page4,.page5,.page6{width:100%;height:100%;background-size:100%; overflow:hidden; background-repeat:no-repeat; position:relative;}
+.page1{background-image:url(images/page1.jpg); }
+.page2{background-image:url(images/page2.jpg); }
+.page3{background-image:url(images/page3.jpg); }
+.page4{background-image:url(images/page4.jpg); }
+.page5{background-image:url(images/page5.jpg); }
+.page6{background-image:url(images/page6.jpg); }
+#nav{width:30px;height:190px; position:absolute;right:0;top:50%; margin-top:-150px}
+#nav ul{width:100px; height:230px; position:absolute;left:0;top:0;}
+#nav ul li{width:20px;height:20px;margin-bottom:5px;background:#666; border:3px solid #fff;}
+#nav ul li.active{background:#9F3;}
+#nav #bord{width:94px;height:40px;border:3px solid #fff;}
+.page1 #welcome{font-size:300%; width:0px; overflow:hidden; height:100px; text-align:center;line-height:100px; font-style:italic; color:#00BBFF; position:absolute;left:50%;top:300px; margin-left:-150px;margin-top:-50px;}
+.page1 .skill{width:1162px; height:254px; position:absolute;left:50%;top:100%; margin-left:-581px;}
+.page1 #meteor{width:100%; height:0; position:absolute; top:0; left:0;}
+.page1 #meteor li{ width:2px; height:100px; position:absolute; top:-100px; left:40px; background:url(images/page1/meteor1.png) no-repeat;}
+
+.page2 h2{ text-align:center; font-size:200%; font-style:italic; color:#FFAC00; width:100%; position:absolute;left:-100%; top:0; border-bottom:3px solid #FFAC00;}
+.page2 ul{width:660px; height:200px; position:absolute;}
+.page2 ul li img{width:150px; height:150px;}
+.page2 ul.top{left:400px; top:100px;}
+.page2 ul.top li{width:0; height:20px; line-height:20px; overflow:hidden; font-size:20px; color:#FFAC00; margin-bottom:5px;}
+.page2 ul.bottom{width:1140px; height:160px; left:50%; top:400px; margin-left:-570px;}
+.page2 ul.bottom li{width:150px; margin-left:2px; position:absolute; left:0; top:-560px; height:150px; float:left; border:5px solid #FFAC00; border-radius:50%; overflow:hidden;}
+
+.page3 .com_eff{width:486px;height:506px; position:absolute;left:50%;top:50%; margin-left:-243px;margin-top:-253px; overflow:hidden;}
+.page3 .com_eff h2{width:100%;text-align:center; font-size:16px;height:20px;}
+.page3 .com_eff .com_list{width:486px;height:486px;}
+.page3 .com_eff .com_list li{width:150px; height:150px; float:left; text-align:center;line-height:150px; margin:5px;border:1px solid #963;position:relative; overflow:hidden; cursor:pointer;}
+.page3 .com_eff .com_list li span{width:150px; height:150px;  text-align:center;line-height:150px; background:#F63; position:absolute; left:-150px; top:0;}
+
+.page4 .grid{width:450px;height:450px; border-radius:50%; position:absolute; left:50%;top:50%; margin-left:-225px; margin-top:-225px; }
+.page4 .grid ul{width:450px; height:450px; position:absolute;left:0;top:0;}
+.page4 .grid ul li{ position:absolute;left:50%; top:50%; margin-left:-70px; margin-top:-70px; width:140px; height:140px;border:2px solid #fff;  text-align:center; line-height:140px; background:#CC8333; cursor:pointer;}
+.page4 .txt{width:200px; height:20px; position:absolute; left:50%; top:50%; margin-left:-100px; margin-top:-10px; text-align:center;}
+
+
+.page5 div{width:400px;height:400px; border:1px solid red; float:left;margin-left:180px; margin-top:100px; position:relative; overflow:hidden; cursor:pointer;}
+.page5 div span{width:400px; height:400px; text-align:center; color:#000; line-height:400px; position:absolute;left:0;top:-400px; background:#FFAC00; opacity:0.6;filter:alpha(opacity:60); font-size:200%;}
+.page5 div img{width:400px; height:400px;}
+.page5 h2{width:100%; height:30px; color:red; font-style:italic; position:relative;}
+.page5 h2 span{width:30px; height:30px; font-size:30px; position:absolute; left:-20px; top:0;}
+
+.page6 .page6con{ width:800px; height:600px; position:absolute; left:50%; top:50%; margin-left:-400px; margin-top:-300px; }
+.page6 .contact{width:800px; height:600px; position:absolute; left:0; top:0;}
+.page6 .contact li{width:200px; height:200px; position:absolute; text-align:center;}
+.page6 .contact li span{width:200px; height:50px; display:inline-block; text-align:center; line-height:50px; font-size:20px; color:#000; font-weight:bold;}
+.page6 .contact li.phone{left:300px; top:350px;}
+.page6 .contact li.qq{left:50px; top:200px;}
+.page6 .contact li.email{left:200px; top:50px;}
+.page6 .contact li.sina{left:400px; top:50px;}
+.page6 .contact li.weixin{left:550px; top:200px;}
+.page6 div.name{width:200px; height:40px; position:absolute; left:300px; top:280px; text-align:center; line-height:40px; font-size:36px; font-style:italic;}
+.page6 #next1{position:absolute;top:200px; right:-100px;}
+.page6 #prev1{position:absolute;top:200px; left:-100px;}
+
+#iframe{width:1000px; height:600px; position:absolute; left:50%; top:50%; margin-left:-500px; margin-top:-300px; background:#fff; z-index:100; border:10px solid #ccc; display:none;}
+#iframe .close{width:30px; height:30px; position:absolute; right:-40px; top:-10px; background:#ccc;}
+#iframe .close img{width:100%;}
+#iframe #newpage{width:200px; height:50px; position:absolute; bottom:0; left:50%; margin-left:-100px; background:#9F6; text-decoration:none; color:#000; font-size:20px; line-height:50px; text-align:center;}
+.iframe{width:1000px; height:550px; position:absolute; left:0; top:0; background:#fff;}
+</style>
+<script src="js/move.js"></script>
+<script src="js/myIframe.js"></script>
+<script>
+window.onload=function(){	
+	var oBox = document.getElementById('box');
+	var oPage = document.getElementById('page');
+	var oHead = document.getElementById('nav');
+	var oPageDiv = oPage.getElementsByTagName('div');
+	var aHeadLi = oHead.getElementsByTagName('li');
+	var oWel = document.getElementById('welcome');
+	var comList = document.getElementById('com_list');
+	var comEff = document.getElementById('com_eff');
+	var oIframe = document.getElementById('iframe');
+	var oSkill = document.getElementById('skill');
+	var comListLi = comList.children;
+	var page2Arr = [oWel.offsetWidth,oWel.offsetTop];
+	var pageReady=true;
+	var page4Pos=[];
+	var page6Pos=[];
+	var page2Pos=[];
+	var iNow = 0;
+	var comEffH = comEff.offsetHeight;
+	
+	comEff.style.height='0';
+	oBox.style.height = document.documentElement.clientHeight+'px';
+		page1();
+		page2();
+		page3();
+		page4();
+		page5();
+		page6();
+	//弹出窗口关闭
+	oIframe.children[0].onclick=function(){
+		oIframe.style.display='none';	
+		oIframe.children[1].href = 'javascript:;'
+		oIframe.children[2].src = '';	
+	}
+	//page1
+	function page1(){
+		var oMeteor = document.getElementById('meteor');
+		var timer = null;
+		if(!page2Arr[2]){
+			page2Arr[2]=oSkill.offsetTop;
+		}
+		oWel.style.width=0;
+		if(iNow==0){
+			move(oWel,{width:300},{duration:1000,complete:function(){
+				move(oWel,{top:80},{duration:1000});
+				move(oSkill,{top:oSkill.offsetTop-300},{duration:1000})
+			}});
+		}else{
+				move(oWel,{top:page2Arr[1]},{duration:1000});
+				move(oSkill,{top:page2Arr[2]},{duration:1000})	
+		}
+		if(iNow==0){
+			createLi(oMeteor);
+		}else{
+			clearInterval(oMeteor.timer)	
+		}
+	}
+	//page2
+	function page2(){
+		var skill = document.getElementById('skill2');
+		var oTop = document.getElementById('top');
+		var topLi = oTop.children;
+		var oBottom = document.getElementById('bottom');
+		var botLi = oBottom.children;
+		for(var i=0;i<botLi.length;i++){
+			botLi[i].style.left = i*botLi[i].offsetWidth+2+'px';	
+		}
+		if(iNow==1){
+			move(skill,{left:0},{duration:1000,complete:function(){
+				contentShow();	
+			}})
+		}else{
+			move(skill,{left:-skill.offsetWidth})	
+			contentHide();
+			page2Hide();	
+		}
+		
+		function contentShow(){
+			var i=0;
+			var timer = setInterval(function(){
+				(function(index){
+					move(topLi[index],{width:600},{duration:1000,complete:function(){
+						if(index==topLi.length-1){
+							page2Imgshow();	
+						}
+					}})	
+				})(i)
+				i++;
+				if(i==topLi.length || iNow!=1){
+					clearInterval(timer);	
+				}	
+				if(iNow!=1){
+					contentHide();	
+				}
+			},200)	
+		}
+		function contentHide(){
+			for(var i=0;i<topLi.length;i++){
+				move(topLi[i],{width:0})
+			}
+		}
+		function page2Img(obj,speed){
+			clearInterval(obj.timer);
+			obj.speedY=0;
+			obj.timer = setInterval(function(){
+				obj.speedY += 3;
+				var t = obj.offsetTop + obj.speedY;
+	
+				if(t >=0){
+					obj.speedY *= speed;
+					t = 0;
+				} 
+				obj.style.top  = t + "px";
+				if(Math.abs(obj.speedY) < 1){
+					obj.speedY = 0;
+				}
+				if(obj.speedY == 0 && t == 0){
+					clearInterval(obj.timer);
+				}
+			},30);	
+		}
+		function page2Imgshow(){
+			for(var i=0;i<botLi.length;i++){
+				page2Img(botLi[i],-(0.5+Math.random()*0.3));	
+			}	
+		}
+		
+		function page2Hide(){
+			for(var i=0;i<botLi.length;i++){
+				move(botLi[i],{top:-570},{duration:300})	
+			}	
+		}
+		for(var i=0;i<botLi.length;i++){
+			page2Drag(botLi[i])
+		}
+		
+		function page2Drag(obj){
+			var speedX=0;
+			var speedY=0;
+			var lastX=0;
+			var lastY=0;
+			var timer=null;
+			obj.onmousedown=function(ev){
+				clearInterval(timer)
+				var oEvent=ev||event;
+				var disX=oEvent.clientX-obj.offsetLeft;
+				var disY=oEvent.clientY-obj.offsetTop;
+				
+				document.onmousemove=function(ev){
+					var oEvent=ev||event;
+					obj.style.left=oEvent.clientX-disX+"px";
+					obj.style.top=oEvent.clientY-disY+"px";
+					
+					speedX=obj.offsetLeft-lastX;
+					speedY=obj.offsetTop-lastY;
+					lastX=obj.offsetLeft;
+					lastY=obj.offsetTop
+				};
+				document.onmouseup=function(){
+					document.onmouseup=document.onmousemove=null;
+					obj.releaseCapture&&obj.releaseCapture();
+					move();
+				};
+				obj.setCapture&&obj.setCapture();
+				return false
+			};
+			
+			function move(){
+				clearInterval(timer);
+				timer=setInterval(function(){
+					speedY+=3;
+					var l=obj.offsetLeft+speedX;
+					var t=obj.offsetTop+speedY;
+					
+					if(l>=document.documentElement.clientWidth-obj.offsetWidth){
+						l=document.documentElement.clientWidth-obj.offsetWidth;
+						speedX*=-0.8;
+						speedY*=0.8;
+					}else if(l<=0){
+						l = 0;
+						speedX*=-0.8;
+						speedY*=0.8
+					}
+					if(t>=document.documentElement.clientHeight-obj.offsetHeight){
+						t=document.documentElement.clientHeight-obj.offsetHeight;
+						speedY*=-0.8;
+						speedX*=0.8;
+					}else if(t<=0){
+						t = 0;
+						speedY*=-0.8;
+						speedX*=0.8
+					}
+					if(Math.abs(speedX)<1){
+						speedX=0;
+					}
+					if(Math.abs(speedY)<1){
+						speedY=0;
+					}
+					
+					if(speedX==0&&speedY==0&&t==document.documentElement.clientHeight-obj.offsetHeight){
+						clearInterval(timer)
+					}
+					
+					obj.style.left=l+"px";
+					obj.style.top=t+"px";
+					
+				},30);
+			}}
+		
+	}
+	//page3
+	function page3(){
+		for(var i=0;i<comListLi.length;i++){
+			mo(comListLi[i]);
+		}	
+		function getDeraction(obj,oEvt){
+			var x = oEvt.clientX-getPos(obj).left-obj.offsetWidth/2;
+			var y = getPos(obj).top+obj.offsetHeight/2-oEvt.clientY;
+			return Math.round((Math.atan2(y,x)/Math.PI*180+180)/90)%4;     
+		}
+		
+		for(var i=0;i<comListLi.length;i++){
+			(function(index){
+				comListLi[i].onclick = function(){
+					oIframe.style.display='block';
+					oIframe.children[1].href = page3Iframe[index];
+					oIframe.children[2].src = page3Iframe[index];	
+				}	
+			})(i)
+		}
+		function mo(obj){
+			obj.onmouseover=function(ev){
+				var oEvt = ev||event;
+				var oFrom = oEvt.fromElement||oEvt.relatedTarget;
+				if(obj.contains(oFrom)){
+					return;	
+				}
+				var a = getDeraction(this,oEvt);
+				var oSpan = obj.children[0];
+				switch(a){
+					case 0:
+					oSpan.style.left='-150px';
+					oSpan.style.top=0;
+					break;	
+					case 1:
+					oSpan.style.top='150px';
+					oSpan.style.left=0
+					break;	
+					case 2:
+					oSpan.style.left='150px';
+					oSpan.style.top=0;
+					break;	
+					case 3:
+					oSpan.style.top='-150px';
+					oSpan.style.left=0
+					break;				
+				}
+				move(oSpan,{left:0,top:0});
+			}
+			obj.onmouseout=function(ev){
+				var oEvt = ev||event;
+				var oTo = oEvt.toElement||oEvt.relatedTarget;
+				if(obj.contains(oTo)){
+					return;	
+				}
+				var a = getDeraction(this,oEvt);
+				var oSpan = obj.children[0];
+				switch(a){
+					case 0:
+					move(oSpan,{left:-150,top:0});
+					break;	
+					case 1:
+					move(oSpan,{left:0,top:150});
+					break;	
+					case 2:
+					move(oSpan,{left:150,top:0});
+					break;	
+					case 3:
+					move(oSpan,{left:0,top:-150});
+					break;				
+				}
+			}
+		}
+	}
+	//page4
+	function page4(){
+		var page4List = document.getElementById('page4_list');
+		var page4Li = page4List.children;
+		var R = page4List.offsetWidth/2;
+		var ready4=false;
+		if(page4Pos.length<page4Li.length){
+			for(var i=0;i<page4Li.length;i++){
+				page4Pos.push({width:page4Li[i].offsetWidth,height:page4Li[i].offsetHeight})
+			}
+		}
+		for(var i=0;i<page4Li.length;i++){
+			page4Li[i].index =	i;
+			page4Li[i].onmouseover=function(){
+				if(!ready4){
+					return;	
+				}
+				this.style.zIndex = this.index+20;
+				move(this,{width:page4Pos[this.index].width*1.3,height:page4Pos[this.index].height*1.3,marginLeft:-page4Pos[this.index].width*1.3/2,marginTop:-page4Pos[this.index].height*1.3/2,lineHeight:page4Pos[this.index].height*1.3})					
+			}
+			page4Li[i].onmouseout=function(){
+				if(!ready4){
+					return;	
+				}
+				this.style.zIndex = page4Li.length - this.index;
+				move(this,{width:page4Pos[this.index].width,height:page4Pos[this.index].height,marginLeft:-page4Pos[this.index].width/2,marginTop:-page4Pos[this.index].height/2,lineHeight:page4Pos[this.index].height})					
+			}
+		}
+		if(iNow == 3){
+			for(var i = 0; i < page4Li.length; i++){
+				var a = 360/page4Li.length*i;
+				page4Li[i].style.zIndex =page4Li.length - page4Li[i].index;
+				moveRound(page4Li[i],a,function(){
+					ready4=true;	
+				});
+			}
+		}else{
+			for(var i = 0; i < page4Li.length; i++){
+				var a = 360/page4Li.length*i;
+				page4Li[i].style.width = page4Pos[i].width+'px';
+				page4Li[i].style.height = page4Pos[i].height+'px';
+				page4Li[i].style.marginLeft = -page4Pos[i].width/2+'px';
+				page4Li[i].style.marginTop = -page4Pos[i].height/2+'px';
+				moveRound(page4Li[i],0);
+			}
+		}
+		
+		function moveRound(obj,iTarget,fn){
+			var start = obj.a||0;
+			var dis = iTarget-start;
+			var time =1000;
+			var count = Math.round(time/30);
+			var n=0;
+			clearInterval(obj.timer)
+			obj.timer=setInterval(function(){
+				n++;
+				var cur = start+dis/count*n;
+				obj.a = cur;
+				var x = R + Math.sin(cur*Math.PI/180)*R;
+				var y = R - Math.cos(cur*Math.PI/180)*R;
+				obj.style.left = x + "px";
+				obj.style.top  = y + "px";
+				if(n == count){
+					clearInterval(obj.timer);
+					fn &&fn();
+				}
+			},30)	
+		}		
+		
+		for(var i=0;i<page4Li.length;i++){
+			(function(index){
+				page4Li[i].onclick=function(){
+					oIframe.style.display='block';
+					oIframe.children[1].href = page4Iframe[index];
+					oIframe.children[2].src = page4Iframe[index];	
+				}	
+			})(i);
+		}	
+	}
+	
+	
+	//page5
+	function page5(){
+		var oPuzzle = document.getElementById('puzzle');
+		var oH2 = document.getElementById('game');
+		var oHspan = oH2.children;
+		var easing = Tween.Elastic.easeOut;
+		over(oPuzzle);
+		function over(obj){
+			obj.onmouseover=function(){
+				move(obj.children[1],{top:0},{easing:easing,duration:1000});	
+			}
+			obj.onmouseout=function(){
+				move(obj.children[1],{top:-400},{easing:easing,duration:1000});	
+			}
+		}
+		oPuzzle.onclick=function(){
+			oIframe.style.display='block';
+			oIframe.children[1].href = 'images/page5/puzzle.html'
+			oIframe.children[2].src = 'images/page5/puzzle.html'
+		}
+		if(iNow==4){
+			clearInterval(page4.timer)
+			var i=oHspan.length-1;
+			page4.timer = setInterval(function(){
+				(function(index){
+					move(oHspan[index],{left:750-(oHspan.length-index)*oHspan[0].offsetWidth},{complete:function(){
+						if(index==0){
+							move(oPuzzle,{opacity:1})	
+						}	
+					}})	
+				})(i)
+				i--;
+				if(i==-1){
+					clearInterval(page4.timer);	
+				}	
+			},100)	
+		}else{
+			clearInterval(page4.timer)
+			var i=0;
+			page4.timer = setInterval(function(){
+				(function(index){
+					move(oHspan[index],{left:-oHspan[0].offsetWidth},{duration:500})	
+				})(i)
+				i++;
+				if(i==oHspan.length){
+					clearInterval(page4.timer);	
+				}	
+			},100)
+				move(oPuzzle,{opacity:0})	
+		}
+	}
+	//page6
+	function page6(){
+		var oContact = document.getElementById('contact');	
+		var oNext1 = document.getElementById('next1');
+		var oPrev1 = document.getElementById('prev1');
+		var aConLi = oContact.children;
+		if(page6Pos.length<aConLi.length){
+			for(var i=0;i<aConLi.length;i++){
+				page6Pos.push({left:aConLi[i].offsetLeft,top:aConLi[i].offsetTop});
+			}
+		}
+		if(iNow==5){
+			var ready6=false;
+			var toPosNow=0;
+			for(var i=0;i<aConLi.length;i++){
+				aConLi[i].style.left = (aConLi[0].parentNode.offsetWidth-aConLi[i].offsetWidth)/2+'px';
+				aConLi[i].style.top = (aConLi[0].parentNode.offsetHeight-aConLi[i].offsetHeight)/2+'px';
+				aConLi[i].index=i;	
+			}
+			function toPos(){
+				for(var i=toPosNow;i<aConLi.length;i++){
+					aConLi[i].style.opacity='0';
+					aConLi[i].style.filter = 'alpha(opacity:0)'	
+					aConLi[i].style.zIndex = 5-i+10;
+				}	
+					aConLi[toPosNow].style.opacity='1';
+					aConLi[toPosNow].style.filter = 'alpha(opacity:100)'	
+				for(var i=toPosNow;i<aConLi.length;i++){
+					(function(index){
+						move(aConLi[index],page6Pos[aConLi[toPosNow].index],{duration:1000,complete:function(){
+							toPosNow++;
+							if(toPosNow<aConLi.length){
+								toPos();	
+							}else{
+								ready6=true;
+								zindex();
+							}
+						}})
+					})(i)
+				}		
+			}
+			toPos();
+			oPrev1.onclick=function(){
+				if(!ready6){
+					return;	
+				}
+				ready6=false;
+				for(var i=0;i<aConLi.length;i++){
+					aConLi[i].index++;
+					if(aConLi[i].index==aConLi.length){
+						aConLi[i].index=0;	
+					}
+					move(aConLi[i],page6Pos[aConLi[i].index],{complete:function(){
+						ready6=true;
+						zindex();
+					}})	
+				}	
+			}
+			oNext1.onclick=function(){
+				if(!ready6){
+					return;	
+				}
+				ready6=false;
+				for(var i=0;i<aConLi.length;i++){
+					aConLi[i].index--;
+					if(aConLi[i].index==-1){
+						aConLi[i].index=aConLi.length-1;	
+					}
+					move(aConLi[i],page6Pos[aConLi[i].index],{complete:function(){
+						ready6=true;
+						zindex();
+					}})	
+				}	
+			}
+			function zindex(){
+				for(var i=0;i<aConLi.length;i++){
+					aConLi[i].style.zIndex = (aConLi.length-aConLi[i].index+1)%3+1;
+					aConLi[i].style.opacity =  (aConLi.length-aConLi[i].index)/10+0.5;
+					aConLi[i].style.filter = 'alpha(opacity:'+((aConLi.length-aConLi[i].index)/10+0.5)*100+')'	
+				}	
+			}
+		}else{
+			for(var i=0;i<aConLi.length;i++){
+				move(aConLi[i],{left:(aConLi[0].parentNode.offsetWidth-aConLi[i].offsetWidth)/2,
+								top:(aConLi[0].parentNode.offsetHeight-aConLi[i].offsetHeight)/2})
+			}
+	
+		}
+	}
+	//页面滚轮切换
+	addMouseWheel(oBox,function(down){
+		if(oIframe.style.display=='block' || pageReady==false){
+			return;	
+		}
+		pageReady=false;
+		if(down){
+			iNow++;
+			if(iNow>aHeadLi.length-1){
+				iNow=aHeadLi.length-1;
+				pageReady=true;
+				return;
+			}	
+		}else{
+			iNow--;
+			if(iNow<0){
+				iNow=0;
+				pageReady=true;
+				return;	
+			}	
+		}	
+		pageTab();
+	});
+
+	//getPos
+	function getPos(obj){
+		var l=0;
+		var t=0;
+		while(obj){
+			l+=obj.offsetLeft;
+			t+=obj.offsetTop;
+			obj = obj.offsetParent;	
+		}
+		return {left:l,top:t}	
+	}
+			//页面切换
+	for(var i=0;i<aHeadLi.length;i++){
+		(function(index){
+			aHeadLi[i].onmouseover=function(){
+				if(this.className=='active'){
+					return;	
+				}
+				iNow = index;
+				pageTab();
+			}
+		})(i)
+	}	
+
+	//页面切换
+	function pageTab(){
+		for(var i=0;i<aHeadLi.length;i++){
+			aHeadLi[i].className='';	
+		}	
+		if(iNow==2){
+			move(comEff,{height:comEffH},{duration:2000})	
+		}else{
+			move(comEff,{height:0},{duration:2000})	
+		}
+		aHeadLi[iNow].className='active';
+		move(oPage,{top:-iNow*oPageDiv[0].offsetHeight},{complete:function(){
+			pageReady=true;	
+		}});
+		page1();
+		page2();
+		page3();
+		page4();
+		page5();
+		page6();
+	}
+	//page流星
+	function createLi(obj){
+		clearInterval(obj.timer)
+		obj.timer = setInterval(function(){
+			var oLi = document.createElement('li');
+			oLi.style.left = 30+Math.random()*1300+'px';
+			obj.appendChild(oLi);
+				
+			move(oLi,{top:oLi.offsetHeight+document.documentElement.clientHeight},{complete:function(){
+				obj.removeChild(oLi);
+				createLi(obj)	
+			}})
+		},100)
+	}
+	
+	//滚轮封装
+	function addMouseWheel(obj,fn){
+		if(window.navigator.userAgent.indexOf('Firefox')!=-1){
+			obj.addEventListener('DOMMouseScroll',fnWheel,false);	
+		}else{
+			obj.onmousewheel=fnWheel;	
+		}
+		function fnWheel(ev){
+			var oEvt = ev||event;
+			var down = true;
+			if(oEvt.wheelDelta){
+				down = oEvt.wheelDelta<0?true : false;	
+			}else{
+				down = oEvt.detail>0?true : false;	
+			}
+			fn && fn(down);
+			obj.preventDefault &&obj.preventDefault();
+			return false;	
+		}	
+	}
+	function getStyle(obj,name){
+		return obj.currentStyle?obj.currentStyle[name] : getComputedStyle(obj,false)[name];	
+	}
+};
+</script>
+
 </head>
 
 <body>
-dsadasdasdas
+<div class="box" id="box">
+	<div class="page" id="page">
+		<div class="page1">
+        	<h2 id="welcome">HELLO!WORLD</h2>
+            <div class="skill" id="skill">
+            	<img src="images/page1/myskill.gif"/>
+            </div>
+            <ul id="meteor">
+            </ul>
+       	</div>
+        <div class="page2">
+        	<h2 id="skill2">技能掌握</h2>
+            <ul class="top" id="top">
+            	<li>一、精通HTML:能够书写语义合理，结构清晰，易维护的HTML结构</li>
+            	<li>二、精通CSS :能够还原视觉设计，并兼容业界承认的主流浏览器</li>
+            	<li>三、精通JavaScript:能够自主编写JS实现相关的前台功能</li>
+            	<li>四、熟悉jQuery等相关类库的使用，有一定的了解</li>
+            	<li>五、精通AJAX和JSONP的数据交互机制，能够手写AJAX和JSONP的取数函数</li>
+            	<li>六、了解HTML5，了解一些HTML5的新特性和标签等</li>
+            	<li>七、了解CSS3，能够并乐于优雅降级地运用在实际项目中</li>
+            </ul>
+            <ul class="bottom" id="bottom">
+            	<li><img src="images/page2/html.png"></li>
+            	<li><img src="images/page2/css.png"></li>
+            	<li><img src="images/page2/javascript.png"></li>
+            	<li><img src="images/page2/jQuery.png"></li>
+            	<li><img src="images/page2/ajax.png"></li>
+            	<li><img src="images/page2/html5.png"></li>
+            	<li><img src="images/page2/css3.png"></li>
+            </ul>
+       `</div>
+		<div class="page3">
+        	<div class="com_eff" id="com_eff">
+            	<h2>一些网站常见特效</h2>
+                <ul class="com_list" id="com_list">
+                    <li>选项卡<span>选项卡</span></li>
+                    <li>焦点图<span>焦点图</span></li>
+                    <li>手风琴<span>手风琴</span></li>
+                    <li>弹性<span>弹性</span></li>
+                    <li>旋转木马<span>旋转木马</span></li>
+                    <li>苹果图标<span>苹果图标</span></li>
+                    <li>收放<span>收放</span></li>
+                    <li>分块运动<span>分块运动</span></li>
+                    <li>chrome应用图标<span>chrome应用图标</span></li>
+                </ul>
+            </div>
+       	</div>
+		<div class="page4">
+        	<div class="grid" id="grid">
+                <ul id="page4_list">
+                    <li>瀑布流</li>
+                    <li>qq长图</li>
+                    <li>延时加载</li>
+                    <li>四边拖拽</li>
+                    <li>去重</li>
+                    <li>超酷时钟</li>
+                    <li>日历</li>
+                    <li>百度jsonp</li>
+                    <li>正则</li>
+                    <li>无缝滚动</li>
+                    <li>放大镜</li>
+                    <li>双色球</li>
+                </ul>
+                <div class='txt'>当然，不止那些</div>
+            </div>
+        </div>
+		<div class="page5">
+        	<h2 id="game"><span>简</span><span>单</span><span>的</span><span>小</span><span>游</span><span>戏</span></h2>
+            <div id="puzzle">
+            	<img src="images/page5/puzzle_demo.jpg"/>
+            	<span>puzzle</span>
+           	</div>
+       	</div>
+
+		<div class="page6">
+        	<div class="page6con"> 
+                <ul class="contact" id="contact">
+                    <li class="phone">
+                    	<img src="images/page6/phone.gif">
+                        <span>15151993619</span>
+                    </li>
+                    <li class="qq">
+                    	<img src="images/page6/qq.gif">
+                        <span>1105788270</span>
+                    </li>
+                    <li class="email">
+                    	<img src="images/page6/email.gif">
+                        <span>yaya_king@163.com</span>
+                    </li>
+                    <li class="sina">
+                    	<img src="images/page6/sina.gif">
+                        <span>1105788270@qq.com</span>
+                    </li>
+                    <li class="weixin">
+                    	<img src="images/page6/weixin.gif">
+                    	<span>ZP1105788270LY</span>
+                    </li>
+                </ul>
+                <div class="name">张鹏</div>
+                <a href="javascript:;" id="prev1"><img src="images/page6/prev.png"></a>
+                <a href="javascript:;" id="next1"><img src="images/page6/next.png"></a>
+            </div>
+        </div>
+	</div>
+    <div id="nav">    
+   		<ul id="nav_ul"> 
+            <li class="active"></li>
+            <li class=""></li>
+            <li class=""></li>
+            <li class=""></li>
+            <li class=""></li>
+            <li class=""></li>
+        </ul>
+    </div>
+    <div id="iframe">
+    	<a class="close" href="javascript:;"><img src="images/close.png"></a> 
+        <a id="newpage" href="javascript:;" target="_blank">在新网页中打开</a>
+		<iframe class="iframe" frameborder="0" src="" name="mywriting">
+</iframe></div></div>
 </body>
 </html>

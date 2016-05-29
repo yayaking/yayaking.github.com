@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0;list-style:none;}
+div{width:960px;margin:0 auto;}
+ul{width:300px;margin-right:10px;border:1px solid red;float:left;}
+ul li{width:300px; margin-bottom:5px;}
+ul li img{width:100%}
+</style>
+<script>
+window.onload=function(){
+	var oDiv=document.getElementById("div1");
+	var aUl = oDiv.getElementsByTagName('ul');
+	var iNow=0;
+	var arr = [];
+	for(var i=0;i<aUl.length;i++){
+		arr.push(aUl[i]);	
+	}
+	var arr1 = ['<img src="delay/m1.jpg">','<img src="delay/m2.jpg">','<img src="delay/m3.jpg">','<img src="delay/m4.jpg">','<img src="delay/m5.jpg">','<img src="delay/m6.jpg">','<img src="delay/m7.jpg">','<img src="delay/m8.jpg">','<img src="delay/m9.jpg">','<img src="delay/m10.jpg">','<img src="delay/m11.jpg">','<img src="delay/m12.jpg">','<img src="delay/m13.jpg">','<img src="delay/m14.jpg">','<img src="delay/m15.jpg">','<img src="delay/m16.jpg">','<img src="delay/m17.jpg">','<img src="delay/m18.jpg">','<img src="delay/m19.jpg">','<img src="delay/m20.jpg">']
+	
+	function createLi(){	
+		for(var i=0;i<20;i++){
+			var oLi = document.createElement('li');
+			oLi.innerHTML=arr1[iNow%20];
+			//var oImg = oLi.children[0];
+			arr.sort(function(n1,n2){
+				return n1.offsetHeight-n2.offsetHeight;	
+			})
+			arr[0].appendChild(oLi);
+			iNow++;
+		}	
+	}
+	createLi()
+	window.onscroll = function(){
+		
+		var scrollTop = document.documentElement.scrollTop ||document.body.scrollTop;
+		var clientH = document.documentElement.clientHeight;
+		
+		var bodyH = document.body.scrollHeight; 
+		if(scrollTop + clientH >= bodyH){
+			alert("到底了");
+			createLi();
+		}
+	};
+};
+</script>
+<style>#BAIDU_DSPUI_FLOWBAR,.adsbygoogle,.ad,div[class^="ad-widsget"],div[id^="div-gpt-ad-"]{display:none !important;}</style></head>
+
+<body>
+<div id="div1">
+    <ul></ul>
+    <ul></ul>
+    <ul></ul>
+</div>
+
+
+</body>
+
+</html>
